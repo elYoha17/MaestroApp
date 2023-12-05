@@ -21,8 +21,17 @@ export default function Authenticated({ user, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
+                                <NavLink href={route('products.index')} active={route().current('products.*')}>
+                                    Produits
+                                </NavLink>
+                                <NavLink href={route('activities.index')} active={route().current('activities.*')}>
+                                    Activités
+                                </NavLink>
+                                <NavLink href={route('creditors.index')} active={route().current('creditors.*')}>
+                                    Créditeurs
+                                </NavLink>
+                                <NavLink href={route('debtors.index')} active={route().current('debtors.*')}>
+                                    Débiteurs
                                 </NavLink>
                             </div>
                         </div>
@@ -92,8 +101,17 @@ export default function Authenticated({ user, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
+                        <ResponsiveNavLink href={route('products.index')} active={route().current('products.*')}>
+                            Produits
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('activities.index')} active={route().current('activities.*')}>
+                            Activités
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('creditors.index')} active={route().current('creditors.*')}>
+                            Créditeurs
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('debtors.index')} active={route().current('debtors.*')}>
+                            Débiteurs
                         </ResponsiveNavLink>
                     </div>
 

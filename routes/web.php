@@ -1,6 +1,16 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ArrivalController;
+use App\Http\Controllers\ContributionController;
+use App\Http\Controllers\CreditorController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DebtorController;
+use App\Http\Controllers\ExpenditureController;
+use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,9 +35,19 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('products', ProductController::class)->only('index');
+    Route::resource('prices', PriceController::class)->only('index');
+    Route::resource('activities', ActivityController::class)->only('index');
+    Route::resource('creditors', CreditorController::class)->only('index');
+    Route::resource('debtors', DebtorController::class)->only('index');
+    Route::resource('purchases', PurchaseController::class)->only('index');
+    Route::resource('arrivals', ArrivalController::class)->only('index');
+    Route::resource('expenditures', ExpenditureController::class)->only('index');
+    Route::resource('contributions', ContributionController::class)->only('index');
+    
+    Route::get('dashboard', DashboardController::class)->name('dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
